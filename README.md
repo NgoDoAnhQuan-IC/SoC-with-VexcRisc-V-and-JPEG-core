@@ -23,6 +23,7 @@ Hệ thống **System-on-Chip (SoC)** hoàn chỉnh phục vụ nén ảnh tĩnh
 ---
 
 ## 🏗 Kiến trúc hệ thống & Luồng xử lý
+<img width="1135" height="615" alt="Screenshot 2026-10-06 134611" src="https://github.com/user-attachments/assets/fe315f2b-3f68-46ed-b4b3-883e2aeb3f93" />
 
 ```text
 [ VexRiscv CPU ] ──(AXI4)──┐
