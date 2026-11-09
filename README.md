@@ -5,7 +5,7 @@ Hệ thống **System-on-Chip (SoC)** hoàn chỉnh phục vụ nén ảnh tĩnh
 ---
 
 ## 👥 Thành viên & Hướng dẫn
-- **Sinh viên:** Ngô Đỗ Anh Quân (23521257), Lê Nhật Quang (23521283)
+- **Sinh viên:** Ngô Đỗ Anh Quân, Lê Nhật Quang 
 - **GVHD:** ThS. Tạ Tri Đức
 - **Đơn vị:** Khoa Kỹ thuật Máy tính, Trường Đại học Công nghệ Thông tin, ĐHQG-HCM (UIT)
 
