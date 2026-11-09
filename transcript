@@ -1,0 +1,91 @@
+# vsim -do {run -all; quit -f} -c work.tb_soc_top 
+# Loading work.tb_soc_top
+# Loading work.soc_top
+# Loading work.dma_irq_controller
+# Loading work.my_core
+# Loading work.VexRiscv
+# Loading work.StreamFifoLowLatency
+# Loading work.StreamFifo
+# Loading work.axi4_full_ram_slave
+# Loading work.ram_dp_byte_en
+# Loading work.axi_crossbar
+# Loading work.axi_crossbar_wr
+# Loading work.axi_crossbar_rd
+# Loading work.dma_axil_adapter
+# Loading work.jpeg_dma_subsystem
+# Loading work.axi_dma
+# Loading work.axi_dma_rd
+# Loading work.axi_dma_wr
+# Loading work.jpeg_axis_wrapper
+# Loading work.jpeg_top
+# Loading work.fifo_out
+# Loading work.pre_fifo
+# Loading work.RGB2YCBCR
+# Loading work.crd_q_h
+# Loading work.cr_dct
+# Loading work.cr_quantizer
+# Loading work.cr_huff
+# Loading work.cbd_q_h
+# Loading work.cb_dct
+# Loading work.cb_quantizer
+# Loading work.cb_huff
+# Loading work.yd_q_h
+# Loading work.y_dct
+# Loading work.y_quantizer
+# Loading work.y_huff
+# Loading work.sync_fifo_32
+# Loading work.ff_checker
+# Loading work.sync_fifo_ff
+# Loading work.axi_crossbar_addr
+# Loading work.arbiter
+# Loading work.priority_encoder
+# Loading work.axi_register_wr
+# Loading work.axi_register_rd
+# ** Warning: (vsim-8607) priority_encoder.v(51): Non-positive replication multiplier inside concat. Replication will be ignored.
+# 
+# ** Warning: (vsim-8607) priority_encoder.v(51): Non-positive replication multiplier inside concat. Replication will be ignored.
+# 
+# ** Warning: (vsim-8607) priority_encoder.v(51): Non-positive replication multiplier inside concat. Replication will be ignored.
+# 
+# ** Warning: (vsim-8607) priority_encoder.v(51): Non-positive replication multiplier inside concat. Replication will be ignored.
+# 
+# ** Warning: (vsim-8607) priority_encoder.v(51): Non-positive replication multiplier inside concat. Replication will be ignored.
+# 
+# ** Warning: (vsim-8607) priority_encoder.v(51): Non-positive replication multiplier inside concat. Replication will be ignored.
+# 
+# ** Warning: (vsim-8607) priority_encoder.v(51): Non-positive replication multiplier inside concat. Replication will be ignored.
+# 
+# ** Warning: (vsim-8607) priority_encoder.v(51): Non-positive replication multiplier inside concat. Replication will be ignored.
+# 
+# ** Warning: Design size of 42 instances exceeds ModelSim ALTERA recommended capacity.
+# This may because you are loading cell libraries which are not recommended with
+# the ModelSim Altera version. Expect performance to be adversely affected.
+# run -all 
+# Addressing configuration for axi_crossbar_addr instance tb_soc_top.uut.crossbar_inst.axi_crossbar_wr_inst.s_ifaces[0].addr_inst
+#  0 ( 0): 00000000 / 18 -- 00000000-0003ffff
+#  1 ( 0): 40000000 / 16 -- 40000000-4000ffff
+# Addressing configuration for axi_crossbar_addr instance tb_soc_top.uut.crossbar_inst.axi_crossbar_wr_inst.s_ifaces[1].addr_inst
+#  0 ( 0): 00000000 / 18 -- 00000000-0003ffff
+#  1 ( 0): 40000000 / 16 -- 40000000-4000ffff
+# Addressing configuration for axi_crossbar_addr instance tb_soc_top.uut.crossbar_inst.axi_crossbar_rd_inst.s_ifaces[0].addr_inst
+#  0 ( 0): 00000000 / 18 -- 00000000-0003ffff
+#  1 ( 0): 40000000 / 16 -- 40000000-4000ffff
+# Addressing configuration for axi_crossbar_addr instance tb_soc_top.uut.crossbar_inst.axi_crossbar_rd_inst.s_ifaces[1].addr_inst
+#  0 ( 0): 00000000 / 18 -- 00000000-0003ffff
+#  1 ( 0): 40000000 / 16 -- 40000000-4000ffff
+# [100000 ns] Starting three-frame DMA/JPEG/IRQ test.
+# [2585000 ns] Output frame 0 buffer: 0001b000..00024000
+# [227325000 ns] DMA read complete, error=0
+# [229815000 ns] JPEG AXI-Stream TLAST accepted for frame 0
+# [229955000 ns] DMA write complete for frame 0, bytes=8160, error=0
+# [237015000 ns] Output frame 1 buffer: 00024000..0002d000
+# [461715000 ns] DMA read complete, error=0
+# [464205000 ns] JPEG AXI-Stream TLAST accepted for frame 1
+# [464265000 ns] DMA write complete for frame 1, bytes=14080, error=0
+# [471645000 ns] Output frame 2 buffer: 0002d000..00036000
+# [696345000 ns] DMA read complete, error=0
+# [698825000 ns] JPEG AXI-Stream TLAST accepted for frame 2
+# [698975000 ns] DMA write complete for frame 2, bytes=8476, error=0
+# [TB PASS] 3 frames completed; one CPU interrupt per frame; 3 output RAM ranges captured.
+# ** Note: $finish    : tb_soc_top.v(114)
+#    Time: 702285 ns  Iteration: 0  Instance: /tb_soc_top

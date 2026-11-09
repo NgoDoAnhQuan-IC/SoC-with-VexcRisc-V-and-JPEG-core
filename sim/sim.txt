@@ -1,0 +1,135 @@
+vlog *.v
+vsim work.tb_soc_top
+
+# Clear existing waves
+wave clear
+
+# Path to SoC instance in testbench
+set TopPath "/tb_soc_top/uut"
+
+# ===================================================
+# 1. System Control
+# ===================================================
+add wave -divider "System Control"
+add wave -color Yellow     /tb_soc_top/clk
+add wave -color Red        /tb_soc_top/reset
+
+# ===================================================
+# 2. Instruction Bus (iBus - Read Only)
+# ===================================================
+add wave -divider "iBus: Address Read (AR)"
+add wave -color Cyan       $TopPath/iBusAxi_ar_valid
+add wave -color Cyan       $TopPath/iBusAxi_ar_ready
+add wave -color Orange -radix hexadecimal $TopPath/iBusAxi_ar_payload_addr
+
+add wave -divider "iBus: Data Read (R)"
+add wave -color Green      $TopPath/iBusAxi_r_valid
+add wave -color Green      $TopPath/iBusAxi_r_ready
+add wave -color Cyan -radix hexadecimal $TopPath/iBusAxi_r_payload_data
+
+# ===================================================
+# 3. Data Bus (dBus - Core <-> Interconnect)
+# ===================================================
+add wave -divider "dBus: Write Address (AW)"
+add wave -color Cyan       $TopPath/dBusAxi_aw_valid
+add wave -color Cyan       $TopPath/dBusAxi_aw_ready
+add wave -color Orange -radix hexadecimal $TopPath/dBusAxi_aw_payload_addr
+
+add wave -divider "dBus: Write Data (W)"
+add wave -color Green      $TopPath/dBusAxi_w_valid
+add wave -color Green      $TopPath/dBusAxi_w_ready
+add wave -color Cyan -radix hexadecimal $TopPath/dBusAxi_w_payload_data
+add wave -color Yellow -radix binary      $TopPath/dBusAxi_w_payload_strb
+
+add wave -divider "dBus: Write Response (B)"
+add wave -color Magenta    $TopPath/dBusAxi_b_valid
+add wave -color Magenta    $TopPath/dBusAxi_b_ready
+add wave -color Magenta -radix hexadecimal $TopPath/dBusAxi_b_payload_resp
+
+add wave -divider "dBus: Read Address (AR)"
+add wave -color Cyan       $TopPath/dBusAxi_ar_valid
+add wave -color Cyan       $TopPath/dBusAxi_ar_ready
+add wave -color Orange -radix hexadecimal $TopPath/dBusAxi_ar_payload_addr
+
+add wave -divider "dBus: Read Data (R)"
+add wave -color Green      $TopPath/dBusAxi_r_valid
+add wave -color Green      $TopPath/dBusAxi_r_ready
+add wave -color Cyan -radix hexadecimal $TopPath/dBusAxi_r_payload_data
+
+# ===================================================
+# 4. Interconnect <-> Data RAM (Slave 0)
+# ===================================================
+add wave -divider "Interconnect -> Data RAM (Write)"
+add wave -color Cyan       $TopPath/ic_s0_awvalid
+add wave -color Cyan       $TopPath/ic_s0_awready
+add wave -color Orange -radix hexadecimal $TopPath/ic_s0_awaddr
+add wave -color Green      $TopPath/ic_s0_wvalid
+add wave -color Green      $TopPath/ic_s0_wready
+add wave -color Cyan -radix hexadecimal $TopPath/ic_s0_wdata
+
+add wave -divider "Interconnect -> Data RAM (Read)"
+add wave -color Cyan       $TopPath/ic_s0_arvalid
+add wave -color Cyan       $TopPath/ic_s0_arready
+add wave -color Orange -radix hexadecimal $TopPath/ic_s0_araddr
+add wave -color Green      $TopPath/ic_s0_rvalid
+add wave -color Green      $TopPath/ic_s0_rready
+add wave -color Cyan -radix hexadecimal $TopPath/ic_s0_rdata
+
+# ===================================================
+# 5. DMA Adapter Output Signals (Descriptors)
+# ===================================================
+add wave -divider "DMA Adapter Output: Read Channel"
+add wave -color Orange -radix hexadecimal $TopPath/test_read_desc_addr
+add wave -color Orange -radix hexadecimal $TopPath/test_read_desc_len
+add wave -color Red        $TopPath/test_read_desc_valid
+add wave -color Yellow     $TopPath/test_read_desc_ready
+
+add wave -divider "DMA Adapter Output: Write Channel"
+add wave -color Orange -radix hexadecimal $TopPath/test_write_desc_addr
+add wave -color Orange -radix hexadecimal $TopPath/test_write_desc_len
+add wave -color Red        $TopPath/test_write_desc_valid
+add wave -color Yellow     $TopPath/test_write_desc_ready
+
+# ===================================================
+# 6. JPEG Core Signals (Subsystem -> Wrapper -> Core)
+# ===================================================
+# Đường dẫn chính xác tới u_jpeg_core theo ảnh Instance Tree
+set JpegPath "$TopPath/u_jpeg_dma_subsystem/u_jpeg_wrapper/u_jpeg_core"
+
+add wave -divider "JPEG Core: Inputs"
+add wave -color Green      $JpegPath/enable
+add wave -color Magenta    $JpegPath/end_of_file_signal
+add wave -color Cyan -radix hexadecimal $JpegPath/data_in
+
+add wave -divider "JPEG Core: Outputs"
+add wave -color Red        $JpegPath/data_ready
+add wave -color Orange -radix hexadecimal $JpegPath/JPEG_bitstream
+add wave -color Magenta    $JpegPath/eof_data_partial_ready
+add wave -color Yellow -radix unsigned $JpegPath/end_of_file_bitstream_count
+
+add wave -divider "JPEG Core: Internal Registers"
+add wave -color Cyan -radix hexadecimal $JpegPath/JPEG_FF
+add wave -color Green      $JpegPath/data_ready_FF
+add wave -color Orange -radix hexadecimal $JpegPath/orc_reg_in
+# ===================================================
+# 7. Interrupt Control & Status
+# ===================================================
+add wave -divider "Interrupt System"
+add wave -color Green      $TopPath/test_dma_irq
+add wave -color Yellow     $TopPath/test_dma_irq_pending
+add wave -color Magenta    $TopPath/test_read_status_valid
+add wave -color Red    	   $TopPath/test_read_status_error
+add wave -color Magenta    $TopPath/test_write_status_valid
+add wave -color Magenta    $TopPath/test_write_status_error
+add wave -color Magenta    $TopPath/test_dma_irq_clear
+add wave -color Magenta    $TopPath/test_cpu_interrupt_taken
+# ===================================================
+# 8. Memory Observation
+# ===================================================
+add wave -divider "D_RAM"
+add wave $TopPath/d_ram/ram_inst/mem
+# ===================================================
+# Run Simulation & Fit Wave Window
+# ===================================================
+run -all
+wave zoomfull
