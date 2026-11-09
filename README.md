@@ -24,8 +24,6 @@ Hệ thống **System-on-Chip (SoC)** hoàn chỉnh phục vụ nén ảnh tĩnh
 
 ## 🏗 Kiến trúc hệ thống & Luồng xử lý
 
-![SoC Architecture](./M%C3%B4%20h%C3%ACnh%20SoC%20-%20chuy%C3%AAn%20nghi%E1%BB%87p.png)
-
 ```text
 [ VexRiscv CPU ] ──(AXI4)──┐
                            ├──> [ AXI Crossbar ] ──┬──> [ System RAM (0x0000_0000) ]
